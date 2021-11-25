@@ -36,7 +36,7 @@ public class AccountController {
 	}
 	
 	
-	@PostMapping("saveOrUpdate")
+	@RequestMapping("saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, 
 			@Valid @ModelAttribute("account") AccountDto dto, BindingResult result) {
 		

@@ -20,7 +20,8 @@ public class AuthenticationInterceptorConfig implements WebMvcConfigurer {
 		
 //		addPathPatterns("/admin/**"): kiem tra xem neu co goi url co /admin/ thi goi interceptor kiem tra dang nhap
 		registry.addInterceptor(adminAuthenticationInterceptor)
-			.addPathPatterns("/admin/**");
+			.addPathPatterns("/admin/**")
+			.excludePathPatterns("/admin/accounts/saveOrUpdate");
 	}
 
 	
