@@ -1,0 +1,59 @@
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/dashboardLayout.html}">
+<head>
+
+</head>
+<body>
+	<section class="row" layout:fragment="content">
+		<div class="col-6 offset-3 mt-4 ">
+			<form th:action="@{/admin/accounts/saveOrUpdate}"
+				th:object="${account}" method="post">
+				<div class="card">
+					<div class="card-header">
+						<h2
+							th:text="${account.isEdit ? 'Edit Account' : 'Add New Account'}">Add
+							New Account</h2>
+					</div>
+
+					<!-- field k can phai account.username vi o tren khai bao object la account roi -->
+					<div class="card-body">
+						<!-- th:field="*{isEdit}": xac dinh dang o che do nao, edit thi la true -->
+						<input type="hidden" th:field="*{isEdit}" />
+						<div class="form-group">
+							<label for="username">Username</label> <input type="text"
+								class="form-control" name="username" id="username"
+								th:field="*{username}" aria-describedby="usernameHid"
+								placeholder="Username"> <small id="usernameHid"
+								th:if="${#fields.hasErrors('username')}"
+								class="form-text text-muted">Username is invalid</small>
+							<!-- th:if = "${#fields.hasErrors('username'): kiem tra neu co loi doi voi username thi 
+								thong bao loi Username is invalid -->
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label> <input type="password"
+								class="form-control" name="password" id="password"
+								th:field="*{password}" aria-describedby="passwordHid"
+								placeholder="Password"> <small id="passwordHid"
+								th:if="${#fields.hasErrors('password')}"
+								class="form-text text-muted">Password is invalid</small>
+						</div>
+					</div>
+					<div class="card-footer text-muted">
+						<button type="reset" class="btn btn-secondary">Reset</button>
+						<a th:href="@{/admin/accounts}" class="btn btn-success">List
+							Account</a>
+						<button class="btn btn-primary">
+							<i class="fas fa-save"></i> <span th:if="${account.isEdit}">Update</span>
+							<span th:unless="${account.isEdit}">Save</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+	<footer class="row"></footer>
+</body>
+</html>
